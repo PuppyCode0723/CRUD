@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css'
+import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
+
+// axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
+// axios.defaults.headers.common['Content-Type'] = "application/json";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
