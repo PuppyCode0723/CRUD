@@ -10,7 +10,7 @@ const Home = (props) => {
         // 結束之後要換成這個
         //  {(isLoggedIn() && props.name.current) ? <UserList /> :'You are not logged in' }
         <div>
-            {(isLoggedIn() && props.name.current) ? "You are not logged in " : 'Pass'}
+            {(isLoggedIn() && props.name.current) ? <UserList name={props.name.current}/> : 'You are not logged in'}
         </div>
     );
 };

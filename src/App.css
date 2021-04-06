@@ -35,19 +35,19 @@
 
 table.layout {
   width: 100%;
-  border-collapse: collapse;  
+  border-collapse: collapse;
   text-align: center;
-  position:relative;
-  right:70%;
+  position: relative;
+  right: 110%;
 }
 
 table.display {
-  margin: 1em 0 ;
+  margin: 1em 0;
 }
 
 table.display th, table.display td {
   border: 1px solid #B3BFAA;
-  padding: .5em 1em;  
+  padding: .5em 1em;
 }
 
 table.display th {
@@ -58,3 +58,7 @@ table.display td {
   background: #fff;
 }
 
+table.display th.button {
+  background: #FFFFFF;
+  border: 0px;
+}

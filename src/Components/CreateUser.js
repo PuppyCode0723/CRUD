@@ -3,39 +3,16 @@ import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from 'react-bo
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 
-const EditUser = (props) => {
+const CreateUser = (props) => {
     const history = useHistory();
     const [show, setShow] = useState(true);
-    const fromComponentInfo = history.location.state.items; // {id: 4, first: 's', last: 'S', email: '234@gmail.com'}
-    // console.log(fromComponentInfo);
 
-    const [firstName, setFirstName] = useState(fromComponentInfo.first);
-    const [lastName, setLastName] = useState(fromComponentInfo.last);
-    const [email, setEmail] = useState(fromComponentInfo.email);
-    const [phone, setPhone] = useState(fromComponentInfo.phone);
-    const [location, setLocation] = useState(fromComponentInfo.location);
-    const [hobby, setHobby] = useState(fromComponentInfo.hobby);
-
-    const handleClose = () => {
-        setShow(false);
-        history.goBack();
-    }
-
-    const handleSubmit = (e) => {
-        // 更新資料庫
-        updateDB();
-        history.goBack('/');
-    }
-
-    const updateDB = async () => {
-        const id = fromComponentInfo.id;
-        const data = { id: id, first: firstName, last: lastName, email: email, phone: phone, location: location, hobby: hobby }
-        await axios.put('http://localhost:3000/crud', data);
-    }
-
-    const goBack = (e) => {
-        history.goBack();
-    }
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [location, setLocation] = useState('');
+    const [hobby, setHobby] = useState('');
 
     const updateFirstName = (value) => setFirstName(value);
     const updateLastName = (value) => setLastName(value);
@@ -44,6 +21,25 @@ const EditUser = (props) => {
     const updateLocation = (value) => setLocation(value);
     const updateHobby = (value) => setHobby(value);
 
+    const handleSubmit = (e) => {
+        // 新增使用者資料
+        insertDB();
+        history.goBack('/');
+    }
+
+    const handleClose = () => {
+        setShow(false);
+        history.goBack();
+    }
+
+    const insertDB = async () => {
+        let data = { first: firstName, last: lastName, email, phone, location, hobby };
+        await axios.post('http://localhost:3000/crud', data);
+    }
+
+    const goBack = (e) => {
+        history.goBack();
+    }
 
     return (
         <Modal
@@ -54,8 +50,8 @@ const EditUser = (props) => {
             centered
         >
             <Modal.Header>
-                Edit data
-            </Modal.Header>
+                Create data
+        </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={(e) => { handleSubmit(e) }}>
                     <FormGroup>
@@ -117,14 +113,14 @@ const EditUser = (props) => {
             <Modal.Footer>
                 <Button variant='danger' onClick={e => handleSubmit(e)}>
                     Submit
-                </Button>
+            </Button>
                 <Button variant='info' onClick={e => goBack(e)}>
                     Back
-                </Button>
+            </Button>
             </Modal.Footer>
 
         </Modal>
-    );
-};
+    )
+}
 
-export default EditUser;
+export default CreateUser;

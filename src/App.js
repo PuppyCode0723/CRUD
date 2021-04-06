@@ -7,8 +7,9 @@ import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router
 import Home from './Components/Home';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import Nav from './Components/Nav'
-import EditUser from './Components/EditUser'
+import Nav from './Components/Nav';
+import EditUser from './Components/EditUser';
+import CreateUser from './Components/CreateUser';
 
 function App() {
   // const [name, setName] = useState('');
@@ -64,6 +65,7 @@ function App() {
           <Route path="/login" component={() => <Login name={name} />} />
           <Route path="/register" component={() => <Register />} />
           <Route path="/editUser" component={() => <EditUser />} />
+          <Route path='/createUser' component={() => <CreateUser />} />
         </Switch>
       </main>
     </div>
